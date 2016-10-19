@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  data:
+    image: mysql
+    volumes:
+      - .:/test
+      
+  mysql:
+    build: ../Mysql
+    volumes_from:
+      - data
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      
+  web:
+    build: ../Nginx/
+    
+    depends_on:
+     - data
+     - mysql
+    ports:
+      - "80:80"
+    links:
+      - mysql
+  

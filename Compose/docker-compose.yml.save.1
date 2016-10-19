@@ -1,0 +1,18 @@
+version: '2'
+services:
+  data:
+    image: mysql
+    volumes:
+
+      - .:/test
+  web:
+    image: nginx
+    depends_on:
+     - data
+    ports:
+      - "80:80"
+    volumes:
+      - "/data"
+    links:
+      - data
+  
