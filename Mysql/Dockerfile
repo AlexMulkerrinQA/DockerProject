@@ -1,4 +1,0 @@
-FROM mysql
-MAINTAINER blubber:alex
-
-ENV MYSQL_ROOT_PASSWORD="root"
