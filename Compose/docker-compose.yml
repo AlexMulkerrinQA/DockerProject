@@ -1,11 +1,11 @@
 version: '2'
 services:
   data:
-    image: mysql
+    build: ../Mysql
     volumes:
       - .:/test
-    environment:
-      - MYSQL_ROOT_PASSWORD="root"
+    # environment:
+      # - MYSQL_ROOT_PASSWORD="root"
       
   mysql:
     build: ../Mysql
@@ -13,8 +13,8 @@ services:
       - data
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
+    # environment:
+     # MYSQL_ROOT_PASSWORD: root
       
   web:
     build: ../Nginx/
