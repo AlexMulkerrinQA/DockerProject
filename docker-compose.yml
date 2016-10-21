@@ -1,29 +1,35 @@
 version: '2'
 services:
-  data:
-    build: ../Mysql
-    volumes:
-      - .:/test
-    # environment:
-      # - MYSQL_ROOT_PASSWORD="root"
-      
-  mysql:
-    build: ../Mysql
-    volumes_from:
-      - data
+  jenkins:
+    build: ./Jenkins
     ports:
-      - "3306:3306"
-    # environment:
-     # MYSQL_ROOT_PASSWORD: root
-      
-  web:
-    build: ../Nginx/
-    
-    depends_on:
-     - data
-     - mysql
+      - "8080:8080"
+    tty: true
+
+  jira:
+    build: ./Jira
+    ports:
+      - "8085:8080"
+    tty: true
+
+  nexus:
+    build: ./Nexus
+    ports:
+      - "8081:8081"
+    tty: true
+
+  urbancode:
+    build: ./UrbanCode
+    ports:
+      - "8089:8080"
+      - "8443:8443"
+      - "7918:7918"
+    tty: true
+
+  zabbix:
+    build: ./Zabbix
     ports:
       - "80:80"
-    links:
-      - mysql
+    tty: true
+
   
