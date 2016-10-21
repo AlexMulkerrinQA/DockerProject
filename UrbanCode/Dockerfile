@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 #FROM ibmcom/ibm-java, just do that inline
-ADD ibm-java-x86_64-71 in /opt/java/ibm-java-x86_64-71
+ADD ibm-java-x86_64-71 /opt/java/ibm-java-x86_64-71
 ENV JAVA_HOME=/opt/java/ibm-java-x86_64-71/jre
 ENV PATH=/opt/java/ibm-java-x86_64-71/jre/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
@@ -18,7 +18,7 @@ ENV UCD_SERVER IBM_UCD_SERVER_6.1.1.5
 ENV UCD_SERVER_ZIP $UCD_SERVER.zip
 ENV IBM_UCD_SECURE true
 ENV CERTS_DIR /certs.d
-
+ENV LICENSE=accept
 
 WORKDIR /opt/ibm-ucd/server
 
