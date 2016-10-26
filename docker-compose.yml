@@ -30,6 +30,17 @@ services:
     build: ./Zabbix
     ports:
       - "80:80"
+      - "10051:10051"
     tty: true
-
-  
+    
+  zabbix-agent:
+    build: 
+      context: ./Zabbix
+      dockerfile: AgentDockerfile
+    volumes:
+      - /:/rootfs
+    links:
+      - zabbix
+    ports:
+      - "10050:10050"
+    tty: true

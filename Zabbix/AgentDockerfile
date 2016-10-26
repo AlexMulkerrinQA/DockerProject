@@ -1,0 +1,14 @@
+FROM ubuntu:14.04
+MAINTAINER blubber:alex
+
+RUN apt-get update
+RUN apt-get install zabbix-agent -y
+
+WORKDIR /etc/zabbix/
+
+sed -i 's/Hostname=Zabbix server/Hostname=zabbix-agent/' zabbix_agentd.conf
+sed -i 's/Server=127.0.0.1/Server=52.212.184.73/' zabbix_agentd.conf
+sed -i 's/ServerActive=127.0.0.1/ServerActive=52.212.184.73/' zabbix_agentd.conf
+
+EXPOSE 10050
+ENTRYPOINT service zabbix-agent start && bash
